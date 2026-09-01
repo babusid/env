@@ -1,0 +1,53 @@
+{
+  pkgs,
+  homeDirectory,
+  username,
+  ...
+}:
+
+{
+  system.primaryUser = username;
+  system.stateVersion = 6;
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  nixpkgs.config.allowUnfree = true;
+
+  users.users.${username}.home = homeDirectory;
+
+  programs.zsh.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    curl
+    fd
+    git
+    jq
+    lazygit
+    neovim
+    ripgrep
+    starship
+    tree
+    uv
+    wget
+  ];
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-code
+  ];
+
+  homebrew = {
+    enable = true;
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+      upgrade = true;
+    };
+    casks = [
+      "ghostty"
+      "raycast"
+    ];
+  };
+}
