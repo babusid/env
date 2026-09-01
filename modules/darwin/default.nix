@@ -23,14 +23,20 @@
   programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
+    basedpyright
+    clang-tools
     curl
     fd
     git
     jq
     lazygit
+    marksman
+    pre-commit
     ripgrep
+    ruff
     starship
     tree
+    ty
     uv
     wget
   ];
