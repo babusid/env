@@ -9,11 +9,13 @@
   system.primaryUser = username;
   system.stateVersion = 6;
 
+  nix.package = pkgs.lix;
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
 
+  nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
 
   users.users.${username}.home = homeDirectory;
