@@ -10,6 +10,11 @@ repo_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 username="${USER:?USER is not set}"
 home_directory="${HOME:?HOME is not set}"
 
+if [[ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+  # shellcheck disable=SC1091
+  . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+fi
+
 if ! command -v nix >/dev/null 2>&1; then
   curl -sSf -L https://install.lix.systems/lix | sh -s -- install
 fi
@@ -34,7 +39,7 @@ cat > "$tmp_dir/flake.nix" <<EOF
   inputs.env.url = "path:${repo_dir}";
 
   outputs = { env, ... }: {
-    darwinConfigurations.macbook = env.lib.mkAppleSiliconMacBook {
+    darwinConfigurations.default = env.lib.mkAppleSiliconMacBook {
       username = "${username}";
       homeDirectory = "${home_directory}";
     };
@@ -42,4 +47,4 @@ cat > "$tmp_dir/flake.nix" <<EOF
 }
 EOF
 
-sudo --preserve-env=PATH nix run github:nix-darwin/nix-darwin/master#darwin-rebuild -- switch --flake "$tmp_dir#macbook"
+sudo -H env PATH="$PATH" nix run https://github.com/nix-darwin/nix-darwin/archive/master.tar.gz#darwin-rebuild -- switch --flake "$tmp_dir#default"
