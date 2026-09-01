@@ -28,7 +28,6 @@
     git
     jq
     lazygit
-    neovim
     ripgrep
     starship
     tree
