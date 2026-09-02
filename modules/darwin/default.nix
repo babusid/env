@@ -31,6 +31,7 @@
     jq
     lazygit
     marksman
+    nodejs
     pre-commit
     ripgrep
     ruff
@@ -48,13 +49,14 @@
   homebrew = {
     enable = true;
     onActivation = {
-      autoUpdate = true;
-      cleanup = "zap";
-      upgrade = true;
+      autoUpdate = false;
+      cleanup = "none";
+      upgrade = false;
     };
     casks = [
       "ghostty"
       "raycast"
+      "codex"
     ];
   };
 }
