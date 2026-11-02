@@ -1,26 +1,24 @@
-background = 2D353B
-foreground = D3C6AA
-cursor-color = D3C6AA
-selection-background = 543A48
-selection-foreground = D3C6AA
+# Port of nvim/lua/themes/rex_misty_forest.lua.
+background = #181e1a
+foreground = #c4d2c5
+cursor-color = #9dc2a0
+cursor-text = #131a16
+selection-background = #2c3f33
+selection-foreground = #e2ece2
 
-palette = 0=#232A2E
-
-palette = 1=#E67E80
-palette = 2=#A7C080
-palette = 3=#DBBC7F
-palette = 4=#7FBBB3
-palette = 5=#D699B6
-palette = 6=#83C092
-
-palette = 7=#9DA9A0
-palette = 8=#7A8478
-
-palette = 9=#E67E80
-palette = 10=#A7C080
-palette = 11=#DBBC7F
-palette = 12=#7FBBB3
-palette = 13=#D699B6
-palette = 14=#83C092
-
-palette = 15=#D3C6AA
+palette = 0=#181e1a
+palette = 1=#cf7a70
+palette = 2=#8fbf8f
+palette = 3=#c9ad72
+palette = 4=#77a3b5
+palette = 5=#a793bb
+palette = 6=#7cb5a3
+palette = 7=#c4d2c5
+palette = 8=#69746c
+palette = 9=#e09489
+palette = 10=#a9d6a6
+palette = 11=#ddc48d
+palette = 12=#93bccb
+palette = 13=#bfadd1
+palette = 14=#97cdbb
+palette = 15=#e2ece2
