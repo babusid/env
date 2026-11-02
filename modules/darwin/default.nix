@@ -30,16 +30,19 @@
     git
     jq
     lazygit
+    llvmPackages.openmp
     marksman
     nodejs
     pre-commit
     ripgrep
     ruff
+    rustup
     starship
     tree
     ty
     uv
     wget
+    zig
   ];
 
   fonts.packages = with pkgs; [
@@ -53,10 +56,14 @@
       cleanup = "none";
       upgrade = false;
     };
+    brews = [
+      "opencode"
+    ];
     casks = [
       "ghostty"
       "raycast"
       "codex"
+      "claude-code"
     ];
   };
 }

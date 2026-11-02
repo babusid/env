@@ -15,6 +15,11 @@
 
   programs.home-manager.enable = true;
 
+  home.sessionPath = [
+    "${homeDirectory}/.local/bin"
+    "${homeDirectory}/.cargo/bin"
+  ];
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;

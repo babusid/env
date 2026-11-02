@@ -6,7 +6,7 @@ mkdir -p ~/.config/ghostty/themes/
 
 # Create a symbolic link from the repo's ghostty_config to the Ghostty config location
 ln -sf $(pwd)/ghostty_config ~/.config/ghostty/config
-ln -sf $(pwd)/ghostty_theme ~/.config/ghostty/themes/everforest_dark
+ln -sf $(pwd)/ghostty_theme ~/.config/ghostty/themes/everforest-dark
 
 
 echo "Ghostty config setup complete."

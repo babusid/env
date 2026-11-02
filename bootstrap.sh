@@ -6,7 +6,7 @@ if [[ "$(uname -s)" != "Darwin" || "$(uname -m)" != "arm64" ]]; then
   exit 1
 fi
 
-repo_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+repo_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 username="${USER:?USER is not set}"
 home_directory="${HOME:?HOME is not set}"
 
@@ -32,6 +32,8 @@ if ! command -v nix >/dev/null 2>&1; then
 fi
 
 tmp_dir="$(mktemp -d)"
+# macOS exposes /var through a symlink; Nix needs the physical /private/var path.
+tmp_dir="$(cd -- "$tmp_dir" && pwd -P)"
 trap 'rm -rf "$tmp_dir"' EXIT
 
 cat > "$tmp_dir/flake.nix" <<EOF
@@ -47,4 +49,7 @@ cat > "$tmp_dir/flake.nix" <<EOF
 }
 EOF
 
-sudo -H env PATH="$PATH" nix run https://github.com/nix-darwin/nix-darwin/archive/master.tar.gz#darwin-rebuild -- switch --flake "$tmp_dir#default"
+nix flake lock "$tmp_dir"
+darwin_source="$(nix eval --impure --raw --expr "(builtins.getFlake \"$tmp_dir\").inputs.env.inputs.nix-darwin.outPath")"
+
+sudo -H env PATH="$PATH" nix run "path:${darwin_source}#darwin-rebuild" -- switch --flake "$tmp_dir#default"

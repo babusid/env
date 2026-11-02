@@ -2,12 +2,12 @@
   description = "macOS setup with nix-darwin and Home Manager";
 
   inputs = {
-    nixpkgs.url = "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
-    nix-darwin.url = "https://github.com/nix-darwin/nix-darwin/archive/master.tar.gz";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nix-homebrew.url = "https://github.com/zhaofengli-wip/nix-homebrew/archive/master.tar.gz";
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
 
   outputs =
@@ -40,12 +40,14 @@
               nix-homebrew = {
                 enable = true;
                 enableRosetta = true;
+                autoMigrate = true;
                 user = username;
                 mutableTaps = true;
               };
 
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "before-nix";
               home-manager.extraSpecialArgs = {
                 inherit username homeDirectory;
               };
