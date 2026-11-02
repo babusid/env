@@ -8,4 +8,4 @@ background-blur = 10
 shell-integration-features = ssh-env,ssh-terminfo
 confirm-close-surface = false
 clipboard-paste-protection = false
-theme = everforest-dark 
+theme = rex_misty_forest

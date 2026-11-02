@@ -33,7 +33,7 @@
 
   xdg.configFile."starship.toml".source = ../starship.toml;
   xdg.configFile."ghostty/config".source = ../ghostty_config;
-  xdg.configFile."ghostty/themes/everforest-dark".source = ../ghostty_theme;
+  xdg.configFile."ghostty/themes/rex_misty_forest".source = ../ghostty_theme;
 
   home.sessionVariables = {
     EDITOR = "nvim";
